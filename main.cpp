@@ -91,7 +91,9 @@ void advance_by_unit_vector(float x, float y, float z) {
 
 int main()
 {
+    int iter = 0;
     while(1) {
+        iter++;
         //reset buffers
         memset(screenBuffer, BACKGROUND_CHAR, sizeof(screenBuffer));
         memset(zBuffer, 0, sizeof(zBuffer));
@@ -111,8 +113,8 @@ int main()
         for(int k = 0; k < SCREEN_HEIGHT*SCREEN_WIDTH; k++) {
             putchar(k % SCREEN_WIDTH ? screenBuffer[k] : 10); //If k % SCREEN_WIDTH is not 0, print the character, else print a new line.
         }
-        advance_by_unit_vector(0.1,0.1,0.1);
-        threeDTranslation = { (float)sin(Xadvance),(float)sin(Xadvance),0.0f};
+        advance_by_unit_vector(0.1,0.1,0.0);
+        threeDTranslation = {(float)sin(iter)*CUBE_WIDTH,0, 0};
         Sleep(100);
     }
     system("pause");
